@@ -8,77 +8,84 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Updated to medieval kingdom color palette with deep burgundy, gold, and stone textures */
+  --background: #e2d3c2; /* Light stone for background */
+  --foreground: #4b4b4b; /* Dark stone for text */
+  --card: #ffffff; /* White for card elements */
+  --card-foreground: #4b4b4b; /* Dark stone for card text */
+  --popover: #9b1c30; /* Deep burgundy for popovers */
+  --popover-foreground: #ffffff; /* White for popover text */
+  --primary: #9b1c30; /* Deep burgundy for primary actions */
+  --primary-foreground: #ffffff; /* White text on primary buttons */
+  --secondary: #d6b80c; /* Gold for secondary actions */
+  --secondary-foreground: #4b4b4b; /* Dark stone for secondary button text */
+  --muted: #f5f5f5; /* Light muted color for backgrounds */
+  --muted-foreground: #4b4b4b; /* Dark stone for muted text */
+  --accent: #d6b80c; /* Gold for accents */
+  --accent-foreground: #4b4b4b; /* Dark stone for accent text */
+  --destructive: #be123c; /* Rose for destructive actions */
+  --destructive-foreground: #ffffff; /* White for destructive text */
+  --border: #4b4b4b; /* Dark stone for borders */
+  --input: #ffffff; /* White for input fields */
+  --ring: #d6b80c; /* Gold for focus rings */
+  --chart-1: #9b1c30; /* Deep burgundy for chart elements */
+  --chart-2: #d6b80c; /* Gold for chart elements */
+  --chart-3: #4b4b4b; /* Dark stone for chart elements */
+  --chart-4: #ffffff; /* White for chart elements */
+  --chart-5: #e2d3c2; /* Light stone for chart elements */
+  --radius: 0.5rem; /* Rounded corners for elements */
+  --sidebar: #9b1c30; /* Deep burgundy for sidebar */
+  --sidebar-foreground: #ffffff; /* White for sidebar text */
+  --sidebar-primary: #d6b80c; /* Gold for primary sidebar actions */
+  --sidebar-primary-foreground: #4b4b4b; /* Dark stone for sidebar primary text */
+  --sidebar-accent: #4b4b4b; /* Dark stone for sidebar accents */
+  --sidebar-accent-foreground: #ffffff; /* White for sidebar accent text */
+  --sidebar-border: #4b4b4b; /* Dark stone for sidebar borders */
+  --sidebar-ring: #d6b80c; /* Gold for sidebar focus rings */
+  --font-serif: var(--font-cinzel); /* Medieval serif font for royal branding */
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Updated dark mode with deeper medieval colors for enhanced contrast */
+  --background: #2a1810; /* Deep brown stone for dark background */
+  --foreground: #f0e6d2; /* Light parchment for text */
+  --card: #3d2817; /* Dark wood for card elements */
+  --card-foreground: #f0e6d2; /* Light parchment for card text */
+  --popover: #7a1625; /* Darker burgundy for popovers */
+  --popover-foreground: #f0e6d2; /* Light parchment for popover text */
+  --primary: #c42545; /* Brighter burgundy for primary actions */
+  --primary-foreground: #ffffff; /* White text on primary buttons */
+  --secondary: #f4d03f; /* Brighter gold for secondary actions */
+  --secondary-foreground: #2a1810; /* Dark background for secondary button text */
+  --muted: #3d2817; /* Dark wood for muted backgrounds */
+  --muted-foreground: #8a7968; /* Muted brown for text */
+  --accent: #f4d03f; /* Bright gold for accents */
+  --accent-foreground: #2a1810; /* Dark background for accent text */
+  --destructive: #dc2626; /* Brighter red for destructive actions */
+  --destructive-foreground: #f0e6d2; /* Light parchment for destructive text */
+  --border: #5d4037; /* Brown stone for borders */
+  --input: #3d2817; /* Dark wood for input fields */
+  --ring: #f4d03f; /* Bright gold for focus rings */
+  --chart-1: #f4d03f; /* Bright gold for chart elements */
+  --chart-2: #c42545; /* Bright burgundy for secondary chart elements */
+  --chart-3: #5d4037; /* Brown stone for additional chart elements */
+  --chart-4: #3d2817; /* Dark wood for chart backgrounds */
+  --chart-5: #8a7968; /* Muted brown for chart highlights */
+  --sidebar: #2a1810; /* Deep brown stone for sidebar background */
+  --sidebar-foreground: #f0e6d2; /* Light parchment for sidebar text */
+  --sidebar-primary: #f4d03f; /* Bright gold for highlighted sidebar items */
+  --sidebar-primary-foreground: #2a1810; /* Dark background for sidebar primary text */
+  --sidebar-accent: #c42545; /* Bright burgundy for sidebar interactions */
+  --sidebar-accent-foreground: #f0e6d2; /* Light parchment for sidebar accent text */
+  --sidebar-border: #5d4037; /* Brown stone for sidebar borders */
+  --sidebar-ring: #f4d03f; /* Bright gold for sidebar focus rings */
+  --font-serif: var(--font-cinzel); /* Medieval serif font for royal branding */
 }
 
 @theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cinzel); /* Medieval serif font for royal branding */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -124,4 +131,175 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Enhanced magical animations with deeper shadows and more dramatic effects */
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(214, 184, 12, 0.4), 0 0 20px rgba(155, 28, 48, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(214, 184, 12, 0.8), 0 0 40px rgba(155, 28, 48, 0.4);
+  }
+}
+
+@keyframes mystical-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(214, 184, 12, 0.3), inset 0 0 5px rgba(155, 28, 48, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(214, 184, 12, 0.6), inset 0 0 15px rgba(155, 28, 48, 0.4);
+  }
+}
+
+/* Updated drift-slow animation to be slower and move in consistent direction across full screen */
+@keyframes drift-slow {
+  0% {
+    transform: translateX(-100px) translateY(0px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(0px);
+  }
+}
+
+/* Updated float-up animation to be much slower and move in consistent upward direction */
+@keyframes float-up {
+  0% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.3;
+  }
+  95% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-mystical-pulse {
+  animation: mystical-pulse 3s ease-in-out infinite;
+}
+
+/* Updated drift-slow animation class with longer duration */
+.animate-drift-slow {
+  animation: drift-slow 40s linear infinite;
+}
+
+/* Added mystical background effects */
+.mystical-bg {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(155, 28, 48, 0.2) 0%,
+    rgba(226, 211, 194, 0.8) 70%,
+    rgba(75, 75, 75, 0.9) 100%
+  );
+}
+
+.starfield::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(2px 2px at 20px 30px, rgba(214, 184, 12, 0.8), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(214, 184, 12, 0.6), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(214, 184, 12, 0.4), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(214, 184, 12, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: sparkle 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Made float-up animation much slower - 60 seconds instead of 30 */
+.animate-float-up {
+  animation: float-up 60s linear infinite;
+}
+
+/* Added royal heraldic decorative elements */
+.royal-crest {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  border: 2px solid var(--accent);
+  box-shadow: 0 4px 12px rgba(155, 28, 48, 0.3), inset 0 1px 0 rgba(214, 184, 12, 0.2);
+}
+
+.royal-text {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.kingdom-border {
+  border: 2px solid var(--accent);
+  border-image: linear-gradient(45deg, var(--primary), var(--accent), var(--primary)) 1;
+  position: relative;
+}
+
+.kingdom-border::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* Enhanced medieval animations */
+@keyframes royal-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(214, 184, 12, 0.4), 0 0 10px rgba(155, 28, 48, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(214, 184, 12, 0.8), 0 0 30px rgba(155, 28, 48, 0.4);
+  }
+}
+
+.animate-royal-glow {
+  animation: royal-glow 3s ease-in-out infinite;
 }
