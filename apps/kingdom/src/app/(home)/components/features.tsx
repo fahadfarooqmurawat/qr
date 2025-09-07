@@ -12,6 +12,7 @@ import horse from "../../../../public/horse_trans.png";
 import envelopes from "../../../../public/envelopes_trans.png";
 import scepter from "../../../../public/scepter_trans.png";
 import scrolls from "../../../../public/scrolls_trans.png";
+import houses from "../../../../public/houses_trans.png";
 import Image from "next/image";
 
 export const Features = () => {
@@ -71,7 +72,7 @@ export const Features = () => {
         </Card>
 
         <Card className='p-6 text-center hover:shadow-lg transition-all flex flex-col items-center'>
-          <Image src={scepter} alt={`scepter`} height={40} />
+          <Image src={houses} alt={`castle surrounded by houses`} height={40} />
           <h3 className='text-xl font-semibold mb-2'>Kingdom Wide</h3>
           <p className='text-muted-foreground'>
             Works perfectly across all devices in the kingdom.
