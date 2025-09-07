@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { CastleIcon } from "./icons";
+import Image from "next/image";
+import crown from "../../public/crown_shadow_trans.png";
 
 export const Footer = () => {
   return (
@@ -7,13 +8,13 @@ export const Footer = () => {
       <div className='container mx-auto px-4 py-12'>
         <div className='text-center'>
           <div className='flex items-center justify-center gap-2 mb-4'>
-            <CastleIcon className='h-6 w-6 text-primary' />
+            <Image src={crown} alt='crown' height={24} />
             <span className='text-xl font-bold text-foreground'>
               Royal Scrolls
             </span>
           </div>
           <p className='text-muted-foreground mb-6 text-pretty'>
-            {`🏰 The kingdom's most trusted and reliable QR code scribes,
+            {`The kingdom's most trusted and reliable QR code scribes,
               serving the realm with honor`}
           </p>
           <div className='flex justify-center gap-6 text-sm text-muted-foreground'>

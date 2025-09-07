@@ -1,6 +1,8 @@
 import { Button } from "@workspace/ui/components/button";
 import Link from "next/link";
-import { CastleIcon, CrownIcon } from "./icons";
+import { CrownIcon } from "./icons";
+import Image from "next/image";
+import crownImage from "../../public/crown_shadow_trans.png";
 
 export const Header = () => {
   return (
@@ -8,8 +10,8 @@ export const Header = () => {
       <div className='container mx-auto px-4 py-4'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center gap-3'>
-            <div className='p-2 bg-primary rounded-lg transition-transform hover:scale-110'>
-              <CastleIcon className='h-8 w-8 text-primary-foreground' />
+            <div className='p-2  rounded-lg transition-transform hover:scale-110'>
+              <Image src={crownImage} alt='Logo' height={50} />
             </div>
             <div>
               <h1 className='text-xl font-bold text-balance text-foreground'>

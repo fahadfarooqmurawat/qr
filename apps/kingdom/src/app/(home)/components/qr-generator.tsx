@@ -25,83 +25,35 @@ import {
 } from "@workspace/ui/components/select";
 import { Textarea } from "@workspace/ui/components/textarea";
 import { useEffect, useRef, useState } from "react";
+import crownImage from "../../../../public/crown_trans.png";
+import scrollTrans from "../../../../public/scroll_trans.png";
+import Image from "next/image";
+import { generateQrCode } from "@/src/server-actions/generate-qr-code";
+
+const userRank = "citizen";
+const remainingScrolls: number = 3;
+const scrollsUsed = 0;
 
 export const QRGenerator = () => {
   const [text, setText] = useState("");
-  const [qrCodeUrl, setQrCodeUrl] = useState("");
+  const [qrCode, setQrCode] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [qrType, setQrType] = useState("text");
-  const [scrollsUsed, setScrollsUsed] = useState(0);
-  const [userRank, setUserRank] = useState<"citizen" | "knight">("citizen");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const remainingScrolls =
-    userRank === "citizen" ? 3 - scrollsUsed : Number.POSITIVE_INFINITY;
+  const remainingScrolls = 3;
 
-  const formatContent = (content: string, type: string) => {
-    switch (type) {
-      case "email":
-        return `mailto:${content}`;
-      case "phone":
-        return `tel:${content}`;
-      case "url":
-        if (!content.startsWith("http://") && !content.startsWith("https://")) {
-          return `https://${content}`;
-        }
-        return content;
-      case "wifi":
-        return `WIFI:T:WPA;S:${content};P:password;;`;
-      default:
-        return content;
-    }
-  };
-
-  const generateQRCode = async () => {
+  const createQRCode = async () => {
     if (!text.trim()) return;
 
-    if (userRank === "citizen" && scrollsUsed >= 3) {
-      /* toast({
-        title: "🏰 Royal Scrolls Exhausted!",
-        description:
-          "You've used all 3 royal scrolls! Become a knight to get unlimited access.",
-        variant: "destructive",
-      }); */
-      return;
-    }
-
     setIsGenerating(true);
+
     try {
-      const formattedContent = formatContent(text.trim(), qrType);
+      const formattedText = text.trim();
 
-      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=${encodeURIComponent(formattedContent)}&color=9b1c30&bgcolor=ffffff`;
+      const newQrCode = await generateQrCode(formattedText);
 
-      setQrCodeUrl(qrApiUrl);
-
-      if (userRank === "citizen") {
-        const newScrollsUsed = scrollsUsed + 1;
-        setScrollsUsed(newScrollsUsed);
-        localStorage.setItem("qrScrollsUsed", newScrollsUsed.toString());
-
-        const remainingScrolls = 3 - newScrollsUsed;
-        if (remainingScrolls > 0) {
-          /* toast({
-            title: "🏰 Royal Scroll Created!",
-            description: `Your scroll is ready! You have ${remainingScrolls} scroll${remainingScrolls === 1 ? "" : "s"} remaining.`,
-          }); */
-        } else {
-          /* toast({
-            title: "🏰 Final Scroll Created!",
-            description:
-              "That was your last scroll! Become a knight for unlimited access.",
-          }); */
-        }
-      } else {
-        /* toast({
-          title: "⚔️ Knight's Scroll Created!",
-          description: "Your royal scroll is ready for the kingdom!",
-        }); */
-      }
+      setQrCode(newQrCode);
     } catch (error) {
       console.error("Error generating QR code:", error);
       /* toast({
@@ -116,18 +68,11 @@ export const QRGenerator = () => {
   };
 
   const downloadQRCode = (format: "png" | "svg") => {
-    if (!qrCodeUrl) return;
-
-    const formattedContent = formatContent(text.trim(), qrType);
-    let downloadUrl = qrCodeUrl;
-
-    if (format === "svg") {
-      downloadUrl = `https://api.qrserver.com/v1/create-qr-code/?size=256x256&format=svg&data=${encodeURIComponent(formattedContent)}&color=9b1c30&bgcolor=ffffff`;
-    }
+    if (!qrCode) return;
 
     const link = document.createElement("a");
     link.download = `royal-scroll-${Date.now()}.${format}`;
-    link.href = downloadUrl;
+    link.href = qrCode;
     link.target = "_blank";
     link.click();
 
@@ -138,56 +83,32 @@ export const QRGenerator = () => {
   };
 
   useEffect(() => {
-    const savedScrolls = localStorage.getItem("qrScrollsUsed");
-    if (savedScrolls) {
-      setScrollsUsed(Number.parseInt(savedScrolls));
-    }
-
-    setTimeout(() => {
-      if (textareaRef.current) {
-        textareaRef.current.focus();
-      } else if (inputRef.current) {
-        inputRef.current.focus();
-      }
-    }, 100);
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (qrType === "text" || qrType === "url") {
-        textareaRef.current?.focus();
-      } else {
-        inputRef.current?.focus();
-      }
-    }, 100);
-  }, [qrType]);
-
-  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
         e.preventDefault();
         if (text.trim() && !isGenerating) {
-          generateQRCode();
+          createQRCode();
         }
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
+
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [text, isGenerating]);
 
   return (
-    <>
+    <div className='mb-20'>
       <div className='text-center mb-8'>
         <div className='flex justify-center mb-4'>
           <div className='animate-float'>
-            <div className='p-4 bg-primary rounded-full'>
-              <CastleIcon className='h-16 w-16 text-primary-foreground' />
+            <div className='p-4'>
+              <Image src={crownImage} alt='Crown' height={100} />
             </div>
           </div>
         </div>
         <h2 className='text-4xl font-bold mb-4 text-balance text-foreground'>
-          🏰 Welcome to Royal Scrolls
+          Welcome to Royal Scrolls
         </h2>
         <p className='text-muted-foreground text-lg mb-4 text-pretty max-w-2xl mx-auto'>
           Enter the royal court and commission your QR code scrolls from the
@@ -200,8 +121,14 @@ export const QRGenerator = () => {
               variant='secondary'
               className='text-lg px-4 py-2 bg-primary text-primary-foreground'
             >
-              🏰 {remainingScrolls} Royal Scroll
-              {remainingScrolls === 1 ? "" : "s"} Remaining
+              <Image
+                src={scrollTrans}
+                alt='scroll'
+                height={30}
+                className='mr-2'
+              />
+              {remainingScrolls} Royal Scroll
+              {/* {remainingScrolls === 1 ? "" : "s"} Remaining */}
             </Badge>
           </div>
         )}
@@ -221,7 +148,6 @@ export const QRGenerator = () => {
         <Card className='h-fit transition-all hover:shadow-2xl border-border hover:border-accent/60 bg-card/80 backdrop-blur-sm'>
           <CardHeader>
             <CardTitle className='flex items-center gap-2 text-card-foreground'>
-              <SwordIcon className='h-5 w-5 text-accent' />
               Commission Your Scroll
             </CardTitle>
             <CardDescription>
@@ -229,6 +155,7 @@ export const QRGenerator = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className='space-y-6'>
+            {/*             
             <div className='space-y-2'>
               <Label htmlFor='qr-type' className='text-card-foreground'>
                 Type of Scroll
@@ -246,45 +173,24 @@ export const QRGenerator = () => {
                 </SelectContent>
               </Select>
             </div>
-
+            */}
             <div className='space-y-2'>
               <Label htmlFor='content' className='text-card-foreground'>
                 Your Commission
               </Label>
-              {qrType === "text" || qrType === "url" ? (
-                <Textarea
-                  ref={textareaRef}
-                  id='content'
-                  placeholder={
-                    qrType === "url"
-                      ? "https://example.com"
-                      : "Enter your royal decree..."
-                  }
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                  rows={4}
-                  className='resize-none transition-all focus:ring-2 border-border focus:border-accent bg-input text-foreground'
-                />
-              ) : (
-                <Input
-                  ref={inputRef}
-                  id='content'
-                  placeholder={
-                    qrType === "email"
-                      ? "user@example.com"
-                      : qrType === "phone"
-                        ? "+1234567890"
-                        : "Network details..."
-                  }
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                  className='transition-all focus:ring-2 border-border focus:border-accent bg-input text-foreground'
-                />
-              )}
+              <Textarea
+                ref={textareaRef}
+                id='content'
+                placeholder={"Enter your royal decree..."}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                rows={4}
+                className='resize-none transition-all focus:ring-2 border-border focus:border-accent bg-input text-foreground'
+              />
             </div>
 
             <Button
-              onClick={generateQRCode}
+              onClick={createQRCode}
               disabled={
                 !text.trim() ||
                 isGenerating ||
@@ -299,15 +205,9 @@ export const QRGenerator = () => {
                   Scribes are working...
                 </>
               ) : userRank === "citizen" && scrollsUsed >= 3 ? (
-                <>
-                  <CrownIcon className='h-4 w-4 mr-2' />
-                  Become a Knight for More
-                </>
+                <>Become a Knight for More</>
               ) : (
-                <>
-                  <SwordIcon className='h-4 w-4 mr-2' />
-                  Create Royal Scroll! 🏰
-                </>
+                <>Create Royal Scroll!</>
               )}
             </Button>
           </CardContent>
@@ -323,11 +223,13 @@ export const QRGenerator = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {qrCodeUrl ? (
+            {qrCode ? (
               <div className='space-y-4 animate-in fade-in-50 duration-500'>
                 <div className='flex justify-center p-6 bg-white rounded-lg border-2 border-dashed border-accent/50 transition-all hover:border-accent'>
-                  <img
-                    src={qrCodeUrl || "/placeholder.svg"}
+                  <Image
+                    src={qrCode}
+                    height={512}
+                    width={512}
                     alt='Generated Royal Scroll'
                     className='max-w-full h-auto transition-transform hover:scale-105'
                     style={{ imageRendering: "pixelated" }}
@@ -353,11 +255,16 @@ export const QRGenerator = () => {
                 </div>
               </div>
             ) : (
-              <div className='flex flex-col items-center justify-center p-12 text-center border-2 border-dashed border-border rounded-lg transition-all hover:border-accent/60'>
-                <div className='animate-float mb-4'>
-                  <ScrollIcon />
+              <div className='flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-border rounded-lg transition-all hover:border-accent/60'>
+                <div className='mb-4'>
+                  <Image
+                    src={scrollTrans}
+                    alt='scroll'
+                    height={30}
+                    className='mr-2'
+                  />
                 </div>
-                <p className='text-muted-foreground text-pretty'>
+                <p className='text-muted-foreground text-pretty mb-2'>
                   Your royal scroll will be crafted here by the kingdom's finest
                   scribes
                 </p>
@@ -366,6 +273,6 @@ export const QRGenerator = () => {
           </CardContent>
         </Card>
       </div>
-    </>
+    </div>
   );
 };

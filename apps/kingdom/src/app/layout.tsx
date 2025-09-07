@@ -1,24 +1,19 @@
-import { Cinzel } from "next/font/google";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import "@workspace/ui/globals.css";
 import { Providers } from "@/src/components/providers";
+import { Metadata } from "next";
+import { MedievalSharp } from "next/font/google";
 
-/* const fontSans = Geist({
+const medievalSharp = MedievalSharp({
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-sans",
 });
 
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-}); */
-
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-cinzel",
-});
+export const metadata: Metadata = {
+  title: "QR Kingdom",
+  icons: {
+    icon: "/favicon.png", // explicitly set favicon.png
+  },
+};
 
 export default function RootLayout({
   children,
@@ -26,10 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <body
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${cinzel.variable}`}
-      >
+    <html lang='en' suppressHydrationWarning>
+      <body className={medievalSharp.className}>
         <Providers>{children}</Providers>
       </body>
     </html>

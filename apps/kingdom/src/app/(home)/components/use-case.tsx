@@ -4,10 +4,15 @@ import {
   SmartphoneIcon,
   UsersIcon,
 } from "@/src/components/icons";
+import Image from "next/image";
+import marketingCampaign from "../../../../public/marketing_campaign_trans.png";
+import eventManagement from "../../../../public/event_management_trans.png";
+import businessCards from "../../../../public/business_cards_trans.png";
+import analyticsTracking from "../../../../public/analytics_tracking_trans.png";
 
 export const UseCase = () => {
   return (
-    <section className='text-center'>
+    <section className='text-center mb-20'>
       <h2 className='text-3xl font-bold mb-4 text-balance'>
         Perfect for Every Use Case
       </h2>
@@ -17,40 +22,44 @@ export const UseCase = () => {
       </p>
 
       <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6'>
-        <div className='text-center space-y-3'>
-          <div className='p-4 bg-blue-100 dark:bg-blue-900/30 rounded-full w-fit mx-auto'>
-            <GlobeIcon className='h-8 w-8 text-blue-600 dark:text-blue-400' />
-          </div>
+        <div className='text-center space-y-3 flex flex-col items-center'>
+          <Image src={marketingCampaign} alt='man blowing a horn' height={50} />
           <h3 className='font-semibold'>Marketing Campaigns</h3>
           <p className='text-sm text-muted-foreground'>
             Drive traffic to landing pages and track campaign performance
           </p>
         </div>
 
-        <div className='text-center space-y-3'>
-          <div className='p-4 bg-green-100 dark:bg-green-900/30 rounded-full w-fit mx-auto'>
-            <UsersIcon className='h-8 w-8 text-green-600 dark:text-green-400' />
-          </div>
+        <div className='text-center space-y-3 flex flex-col items-center'>
+          <Image
+            src={eventManagement}
+            alt='large tent and people'
+            height={50}
+          />
           <h3 className='font-semibold'>Event Management</h3>
           <p className='text-sm text-muted-foreground'>
             Share event details, WiFi credentials, and contact information
           </p>
         </div>
 
-        <div className='text-center space-y-3'>
-          <div className='p-4 bg-purple-100 dark:bg-purple-900/30 rounded-full w-fit mx-auto'>
-            <SmartphoneIcon className='h-8 w-8 text-purple-600 dark:text-purple-400' />
-          </div>
+        <div className='text-center space-y-3 flex flex-col items-center'>
+          <Image
+            src={businessCards}
+            alt='medieval letter with stamp'
+            height={50}
+          />
           <h3 className='font-semibold'>Business Cards</h3>
           <p className='text-sm text-muted-foreground'>
             Modern networking with instant contact sharing
           </p>
         </div>
 
-        <div className='text-center space-y-3'>
-          <div className='p-4 bg-orange-100 dark:bg-orange-900/30 rounded-full w-fit mx-auto'>
-            <BarChart3Icon className='h-8 w-8 text-orange-600 dark:text-orange-400' />
-          </div>
+        <div className='text-center space-y-3 flex flex-col items-center'>
+          <Image
+            src={analyticsTracking}
+            alt='medieval scroll showing a bar chart'
+            height={50}
+          />
           <h3 className='font-semibold'>Analytics Tracking</h3>
           <p className='text-sm text-muted-foreground'>
             Monitor engagement and optimize your QR code strategy
